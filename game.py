@@ -2,13 +2,6 @@ import pygame
 from player import Player
 
 
-def check_collision(a, b):
-    if a.colliderect(b):
-        return False
-    else:
-        return True
-
-
 class Game:
     def __init__(self, screen):
         self.screen = screen
@@ -41,14 +34,12 @@ class Game:
             self.player.image = self.player.images[self.player.current_sprite]
 
     def update(self):
-        if self.player.rect.colliderect(self.left_wall):
-            self.player.rect.x += 0.01
-            self.player.velocity[0] = 0
-        elif self.player.rect.colliderect(self.right_wall):
-            self.player.rect.x -= 0.01
-            self.player.velocity[0] = 0
-        else:
-            self.player.move()
+        self.player.check_collision()
+
+        if self.player.velocity[0] == -1:
+            self.player.image = pygame.transform.flip(self.player.image, True, False)
+        elif self.player.velocity[0] == 1:
+            self.player.image = pygame.transform.flip(self.player.image, False, False)
 
         print(self.player.velocity)
 

@@ -1,4 +1,6 @@
 import pygame
+
+import game
 from spritesheet import Spritesheet
 
 
@@ -33,6 +35,16 @@ class Player(pygame.sprite.Sprite):
     def animate(self):
         self.is_animating = True
         self.update()
+
+    def check_collision(self):
+        if self.rect.colliderect(game.Game(None).left_wall):
+            self.rect.x += 0.01
+            self.velocity[0] = 0
+        elif self.rect.colliderect(game.Game(None).right_wall):
+            self.rect.x -= 0.01
+            self.velocity[0] = 0
+        else:
+            self.move()
 
     def update(self):
         if self.is_animating is True:
