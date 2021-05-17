@@ -41,7 +41,6 @@ class Game:
         elif self.player.velocity[0] == 1:
             self.player.image = pygame.transform.flip(self.player.image, False, False)
 
-        print(self.player.velocity)
 
         if self.player.rect.colliderect(self.floor):
             self.player.velocity[1] = 0
