@@ -25,7 +25,7 @@ class Player(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.center = x, y
         self.velocity = [0, 0]
-        self.speed = 5
+        self.speed = 7
         self.jump_force = 3
         self.is_jumping = False
 
